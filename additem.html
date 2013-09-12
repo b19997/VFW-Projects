@@ -3,7 +3,7 @@
      <head>
          <meta charset="utf-8" />
          <meta name="description" content="our First HTML5 document, how exciting!" />
-         <meta name="keywords" ontent="html5, mobile developement, Full Sail University" />
+         <meta name="keywords" content="html5, mobile developement, Full Sail University" />
          <meta name="robots" content="index,follow" />
          <meta name="veiwport" content="user-scallable=no, width=device-width" />
          <meta name="veiwport" content="target-densitydpi=device-dpi" />
@@ -18,22 +18,22 @@
      </head>
         <header>
           <hgroup>
-            <h1>Profile Editor<h1/> 
-            <h2> Create, Copy, Paste, and Edit<h2/>
-           <hgroup/>
+            <h1>Profile Editor</h1> 
+            <h2> Create, Copy, Paste, and Edit</h2>
+           </hgroup>
         <header/>
-     <body>
+     <body style="font-family:lane-narrow;color:#380000;font-size:10px; background-color:#888888 ">
         <p> Tired of creating a profile everytime you join a website? With this tool you can locally save your profile information so that whenever needed you can copy, paste, edit, and even delete!</p>
          <form action="#" method="post">
            <fieldset>
-             <legend>Put your profile here in the fields below</legend>
-             <ul>
-                  <li><label for="list">Profile Group</label><select id = "myList"><option value = "1">Proffessional</option>
+             <legend style="background-color:#B8B8B8 ">Put your profile here in the fields below</legend>
+             <ul style="background-color:#D0D0D0 ">
+                  <li ><label for="list">Profile Group</label><select id = "myList"><option value = "1">Proffessional</option>
                   <option value = "2">Social</option><option value = "3">Recreation</option></select></li>
                  <li><label for="fname">First Name:</label><input type="text" id="fname" /></li>
                  <li><label for="lname">Last Name:</label><input type="text" id="lname" /></li>
                  <li><label for="pword">Password:</label><input type"password" id="pword" /></li>
-                 <li><label for="email">Email:</label><input type="email" placeholder="example@email.com" /></li>
+                 <li><label for="email">Email:</label><input type="email" id = "mail"placeholder="example@email.com" /></li>
                  <li><label for="adss">Address Line 1:</label><input type="text" id="adss" /></li>
                  <li><label for="adss">Address Line 2:</label><input type="text" id="adss" /></li>
                  <li><label for="cit">City:</label><input type="text" id="cit" /></li>
@@ -42,7 +42,18 @@
                  <li><label>Gender</label>         
                  <input type = "radio" name = "gender" id = "male" value = "male" checked = "checked" /><label for = "male">Male</label>
                  <input type = "radio" name = "gender" id = "fem" value = "female" /><label for = "fem">Female</label></li>
-                 <li><label for="range">Age 1 - 100:</label><input type="range" id="age" /></li>
+            <div id="slider">
+                 <li><label for="age">Age 1 - 100:</label><input id="slide" type="range" min="1" max="100" step="1" value="0" onchange="updateSlider(this.value)" />              
+            </div>
+            <div id="selected">1</div>
+                 <li><label for = "date">Date Added:</label><input type = "date" id = "dateSelected"/></li>
+            <div id="notes" align="left">
+              <li>  <p align="left">Additional Notes</p>
+                 <textarea id="myForms" rows="5" cols="50" style="border-width:3px;" maxlength="1000"></textarea>
+            </div> 
+                 
+                 
+
 
             </ul>
       
@@ -53,7 +64,7 @@
 
       </body>
           
-          <input type = "button" value = "Preview Profile" />
-          <input type = "reset"  value="Delete Profile"/>
-          <input type = "submit" value="Submit Profile" />
+          <input type = "button" value = "Preview Profile" class = "buttons" onclick="" />
+          <input type = "reset"  value="Delete Profile" class = "buttons" onclick=""/>
+          <input type = "submit" value="Submit Profile" class = "buttons" onclick="save"/>
 </html>
