@@ -27,5 +27,22 @@ var  slide= document.getElementById("slide");
 var  dateSelected= document.getElementById("dateSelected");
 var  notes= document.getElementById("notes");
 
+/*var info = function(){
+    myList
+
+};*/
 
 
+var color = document.getElementById("nextTwo");
+
+var border = function(){
+    color.setAttribute("class", "withFocus");
+
+
+}
+color.addEventListener("focus", border)
+console.log(color);
+
+
+
+;
