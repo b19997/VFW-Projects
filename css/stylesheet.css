@@ -1,0 +1,43 @@
+.wrapper{
+	font-family:lane-narrow;color:#380000;
+	font-size:20px; 
+	background-color:#888888
+}
+
+.block{
+	background-color:#D0D0D0
+}
+
+.texting{
+	border-width:3px;
+	border-color:#380000;
+    background-color: #c0c0c0;
+}
+.legends{
+	background-color:#B8B8B8
+}
+
+#selected {
+border-radius:10px;
+width:45px;
+padding-top:10px; padding-bottom:10px;
+background-color:#ffffff;
+text-align:center;
+color:#380000;
+font-weight:bold; font-size:large;
+margin-right:40px;
+}
+
+#slider {
+margin-right:5px;
+}
+
+input[type="range"] {
+padding-left:2px; padding-right:2px;
+border-radius: 5px;
+background-color: #ffffff;
+}
+
+.withFocus{
+	border:2px solid #380000;
+}
