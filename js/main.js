@@ -49,8 +49,12 @@ function controlData(n){
 	}
 }
 
-function storeData(){
+function storeData(key){
+	if(!key){     
 	var id = Math.floor(Math.random()*100000001);
+    }else{
+    	id = key;
+    }
 	getRadioButton();
 	var item          ={};
 	    item.group    =["Group", $("groups").value];
@@ -66,9 +70,9 @@ function storeData(){
 	    item.gender   =["Gender", genderValue];   
 	    item.slide    =["Age", $("slide").value]; 
 	    item.dateSelected    =["Date Added", $("dateSelected").value]; 
-
+        item.write    =["Additional Notes", $("write").value];
 	    localStorage.setItem(id, JSON.stringify(item));
-	    alert("Profile Saved") 
+	    alert("Profile Saved"); 
 }
 
 function previewData(){
@@ -148,6 +152,12 @@ function editMoreOptions(){
        }
        $("slide").value = item.slide[1];
        $("dateSelected").value = item.dateSelected[1];
+
+       saveData.removeEventListener("click", storeData);
+       $("submiting").value = "Edit Profile";
+       var editStoreData = $("submiting");
+       editStoreData.addEventListener("click", validate);
+       editStoreData.key = this.key;
 }
 
 function clearData(){
@@ -161,8 +171,67 @@ function clearData(){
 	}
 }
 
+function validate(eve){
+     var getGroup = $("groups");
+     var getFname = $("fname");
+     var getLname = $("lname");     
+     var getPword = $("pword");
+     var getEmail = $("mail");
+
+
+     errorMsg.innerHTML = "";
+     getGroup.style.border = "1px solid black";
+     getFname.style.border = "1px solid black";
+     getLname.style.border = "1px solid black";
+     getPword.style.border = "1px solid black";
+     getEmail.style.border = "1px solid black";
+
+
+     var messages = [];
+     if(getGroup.value ==="--Choose Profile--"){
+     	 var groupsMissing = "Please Choose a Profile Group.";
+     	 getGroup.style.border = "1px solid red";
+     	 messages.push(groupsMissing);
+     }
+     if(getFname.value === ""){
+     	 var fnameMissing = "Please Enter First Name.";
+     	 getFname.style.border = "1px solid red";
+     	 messages.push(fnameMissing);
+     	}
+     if(getLname.value === ""){
+     	 var lnameMissing = "Please Enter Last Name.";
+     	 getLname.style.border = "1px solid red";
+     	 messages.push(lnameMissing);
+     	}
+     if(getPword.value === ""){
+     	 var pwordMissing = "Please Enter a Password.";
+     	 getPword.style.border = "1px solid red";
+     	 messages.push(pwordMissing);
+     	}
+     
+     	var regExpress = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+     	if(!(regExpress.exec(getEmail.value))){
+     		var emailMissing = "Please Enter an Email.";
+     		getEmail.style.border = "1px solid red";
+     		messages.push(emailMissing);
+     	}	
+     	if(messages.length >= 1){
+     		for(var i=0, j=messages.length; i < j; i++){
+     			var errors = document.createElement("li");
+     			errors.innerHTML = messages[i];
+     		    errorMsg.appendChild(errors);
+     		}
+     		eve.preventDefault();
+     		return false;
+            }else{
+           	  storeData(this.key);
+           }
+     	}	
+
+
 var profileGroups = ["--Choose Profile--", "Proffessional", "Social", "Recreational"];
 groupCreate();
+errorMsg = $("errorMessages");
 
 
 
@@ -171,7 +240,8 @@ groupCreate();
 	var clearStorage = $("deleteData");
 	deleteData.addEventListener("click", clearData);
 	var saveData = $("submiting");
-	submiting.addEventListener("click", storeData);
+	submiting.addEventListener("click", validate);
+
 
 
 
