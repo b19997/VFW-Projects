@@ -121,7 +121,7 @@ function makeMoreOptions(key, moreOptionsLi){
 	deleteOptions.href = "#";
 	deleteOptions.key = key;
 	var deleteUserText = "Delete Profile";
-	// deleteOptions.addEventListener("click", deleteMoreOptions);
+	deleteOptions.addEventListener("click", deleteMoreOptions);
 	deleteOptions.innerHTML = deleteUserText;
 	moreOptionsLi.appendChild(deleteOptions);
 
@@ -159,6 +159,18 @@ function editMoreOptions(){
        editStoreData.addEventListener("click", validate);
        editStoreData.key = this.key;
 }
+
+function deleteMoreOptions(){
+	var question = confirm("Are You Sure You Wish To Delete This Profile Item?");
+	if (question){
+		   localStorage.removeItem(this.key);
+		   alert("Profile Item Was Deleted!")
+		   window.location.reload();
+    }else{
+       alert("Profile Item Was Note Deleted!")
+    }
+}
+
 
 function clearData(){
 	if(localStorage.length === 0){
