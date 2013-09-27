@@ -78,8 +78,10 @@ function storeData(key){
 function previewData(){
 	controlData("on");
 	if(localStorage.length === 0){
-		alert("There is nothing to preview");
+		alert("There is nothing to preview. So Standard Data is available");
+	    autoFillData();
 	}
+
 	var makeDiv = document.createElement("div");
 	makeDiv.setAttribute("id", "items");
 	var makeList = document.createElement("ul");
@@ -95,6 +97,7 @@ function previewData(){
 		var object = JSON.parse(value);
 		var makeSubList = document.createElement("ul");
 		makeLi.appendChild(makeSubList);
+		showImg(object.group[1], makeSubList);
 		for(var n in object){
 			var makeSubLi = document.createElement("ul");
 			makeSubList.appendChild(makeSubLi);
@@ -105,6 +108,14 @@ function previewData(){
 		makeMoreOptions(localStorage.key(i), moreOptionsLi);
 	}
 }
+function showImg(icons, makeSubList){
+	var imgLi = document.createElement("li");
+	makeSubList.appendChild(imgLi);
+	var newImage = document.createElement("img");
+	var setSource = newImage.setAttribute("src", "IMG/"+ icons + ".png");
+	imgLi.appendChild(newImage);
+}
+
 function makeMoreOptions(key, moreOptionsLi){
 	var editOptions = document.createElement("a");
 	editOptions.href = "#";
@@ -267,6 +278,12 @@ var display = document.getElementById("selected");
 display.innerHTML=slideAmount;
 };
 
+function autoFillData(){
+	for(var n in jsonData){
+		var id = Math.floor(Math.random()*100000001);
+		localStorage.setItem(id, JSON.stringify(jsonData[n]));
+	}
+}
    
         
 
